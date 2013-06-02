@@ -22,6 +22,7 @@
 
 #include "IEMath.h"
 
+// http://gamedev.tutsplus.com/tutorials/implementation/how-to-create-a-custom-2d-physics-engine-friction-scene-and-jump-table/
 struct Scene
 {
   Scene( f32 dt, uint32 iterations )

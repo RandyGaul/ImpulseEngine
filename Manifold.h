@@ -22,6 +22,7 @@
 
 struct Body;
 
+// http://gamedev.tutsplus.com/tutorials/implementation/create-custom-2d-physics-engine-aabb-circle-impulse-resolution/
 struct Manifold
 {
   Manifold( Body *a, Body *b )

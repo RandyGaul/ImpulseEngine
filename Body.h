@@ -22,6 +22,7 @@
 
 struct Shape;
 
+// http://gamedev.tutsplus.com/tutorials/implementation/how-to-create-a-custom-2d-physics-engine-the-core-engine/
 struct Body
 {
   Body( Shape *shape_, uint32 x, uint32 y );
@@ -55,7 +56,6 @@ struct Body
   real orient; // radians
 
   Vec2 force;
-  Vec2 oldForce;
 
   // Set by shape
   real I;  // moment of inertia
@@ -63,12 +63,15 @@ struct Body
   real m;  // mass
   real im; // inverse masee
 
+  // http://gamedev.tutsplus.com/tutorials/implementation/how-to-create-a-custom-2d-physics-engine-friction-scene-and-jump-table/
   real staticFriction;
   real dynamicFriction;
   real restitution;
 
+  // Shape interface
   Shape *shape;
 
+  // Store a color in RGB format
   real r, g, b;
 };
 
