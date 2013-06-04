@@ -63,13 +63,13 @@ f32 Clock::Difference( void )
 }
 
 // Get the current clock count
-LONGLONG Clock::Current( void )
+int64_t Clock::Current( void )
 {
   QueryPerformanceCounter( &m_current );
   return m_current.QuadPart;
 }
 
-void Clock::Query( LARGE_INTEGER& query )
+void Clock::Query( int64_t& query )
 {
   QueryPerformanceCounter( &query );
 }

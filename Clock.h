@@ -16,6 +16,7 @@
          misrepresented as being the original software.
       3. This notice may not be removed or altered from any source distribution.
 */
+#include <stdint.h>
 
 class Clock
 {
@@ -36,13 +37,13 @@ public:
   f32 Difference( void );
 
   // Get the current clock count
-  LONGLONG Current( void );
+  int64_t Current( void );
 
 private:
-  LARGE_INTEGER m_freq;
-  LARGE_INTEGER m_start, m_stop, m_current;
+  int64_t m_freq;
+  int64_t m_start, m_stop, m_current;
 
   friend class Timer;
   // Callbacks for Timer
-  void Query( LARGE_INTEGER& query );
+  void Query( int64_t& query );
 };
