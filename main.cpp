@@ -103,8 +103,8 @@ void PhysicsLoop( void )
   RenderString( 1, 2, "Left click to spawn a polygon" );
   RenderString( 1, 4, "Right click to spawn a circle" );
 
-  static float accumulator = 0;
-  accumulator += pclock.Elapsed( );
+  static double accumulator = 0;
+  accumulator += pclock.Elapsed( ) / static_cast<double>(std::chrono::duration_cast<clock_freq>(std::chrono::seconds(1)).count());
   pclock.Start( );
 
   accumulator = Clamp( 0.0f, 0.1f, accumulator );
