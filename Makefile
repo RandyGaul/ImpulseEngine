@@ -1,4 +1,4 @@
-CXXFLAGS=-O3 -std=c++0x -D_DEBUG -Wall -g 
+CXXFLAGS=-O3 -std=c++0x -Wall
 
 SOURCES= $(wildcard *.cpp)
 
