@@ -6,7 +6,7 @@ OBJECTS=$(patsubst %.cpp, %.o, $(SOURCES))
 
 TARGET=$(lastword $(subst /, ,$(realpath .)))
 
-LINKS= -lglut -lGL 
+LINKS= -lglut -lGL -lGLU
 
 CXX=g++
 
@@ -14,7 +14,7 @@ all: $(TARGET)
 	@echo ImpulseEngine built
 
 $(TARGET): $(OBJECTS)
-	@$(CXX) $(CXXFLAGS) -o sketch $(OBJECTS) $(LINKS)
+	@$(CXX) $(CXXFLAGS) -o ImpulseEngine $(OBJECTS) $(LINKS)
 
 clean:
 	rm -rf $(OBJECTS) $(TARGET)
