@@ -32,7 +32,8 @@ struct Shape
     ePoly,
     eCount
   };
-
+  
+  Shape() {}
   virtual Shape *Clone( void ) const = 0;
   virtual void Initialize( void ) = 0;
   virtual void ComputeMass( real density ) = 0;
@@ -48,10 +49,7 @@ struct Shape
     real radius;
 
     // For Polygon shape
-    struct
-    {
       Mat2 u; // Orientation matrix from model to world
-    };
   };
 };
 

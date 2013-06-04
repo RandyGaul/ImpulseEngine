@@ -22,12 +22,6 @@
 
 Clock::Clock( )
 {
-  // Assign to a single processor
-  SetThreadAffinityMask( GetCurrentThread( ), 1 );
-
-  // Grab frequency of this processor
-  QueryPerformanceFrequency( &m_freq );
-
   // Setup initial times
   Start( );
   Stop( );
@@ -40,36 +34,31 @@ Clock::~Clock( )
 // Records current time in start variable
 void Clock::Start( void )
 {
-  QueryPerformanceCounter( &m_start );
+  m_start = hr_clock::now();
 }
 
 // Records current time in stop variable
 void Clock::Stop( void )
 {
-  QueryPerformanceCounter( &m_stop );
+  m_stop = hr_clock::now();
 }
 
 // Get current time from previous Start call
-f32 Clock::Elapsed( void )
+long long Clock::Elapsed( void )
 {
-  QueryPerformanceCounter( &m_current );
-  return (m_current.QuadPart - m_start.QuadPart) / (float)m_freq.QuadPart;
+  m_current = hr_clock::now();
+  return std::chrono::duration_cast<clock_freq>(m_current - m_start).count();
 }
 
 // Time between last Start and Stop calls
-f32 Clock::Difference( void )
+long long Clock::Difference( void )
 {
-  return (m_stop.QuadPart - m_start.QuadPart) / (float)m_freq.QuadPart;
+  return std::chrono::duration_cast<clock_freq>(m_stop - m_start).count();
 }
 
 // Get the current clock count
-LONGLONG Clock::Current( void )
+long long Clock::Current( void )
 {
-  QueryPerformanceCounter( &m_current );
-  return m_current.QuadPart;
-}
-
-void Clock::Query( LARGE_INTEGER& query )
-{
-  QueryPerformanceCounter( &query );
+  m_current = hr_clock::now();
+  return std::chrono::duration_cast<clock_freq>(m_current.time_since_epoch()).count();
 }

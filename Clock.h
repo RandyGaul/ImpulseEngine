@@ -17,6 +17,11 @@
       3. This notice may not be removed or altered from any source distribution.
 */
 
+#include <chrono>
+
+typedef std::chrono::high_resolution_clock hr_clock;
+typedef std::chrono::nanoseconds clock_freq;
+
 class Clock
 {
 public:
@@ -30,19 +35,16 @@ public:
   void Stop( void );
 
   // Time since last Start call
-  f32 Elapsed( void );
+  long long Elapsed( void );
 
   // Time between last Start and Stop calls
-  f32 Difference( void );
+  long long Difference( void );
 
   // Get the current clock count
-  LONGLONG Current( void );
+  long long Current( void );
 
 private:
-  LARGE_INTEGER m_freq;
-  LARGE_INTEGER m_start, m_stop, m_current;
-
-  friend class Timer;
-  // Callbacks for Timer
-  void Query( LARGE_INTEGER& query );
+  hr_clock::time_point m_start;
+  hr_clock::time_point m_stop;
+  hr_clock::time_point m_current;
 };

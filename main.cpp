@@ -22,7 +22,7 @@
 #define ESC_KEY 27
 
 Scene scene( 1.0f / 60.0f, 10 );
-Clock clock;
+Clock pclock;
 bool frameStepping = false;
 bool canStep = false;
 
@@ -103,9 +103,9 @@ void PhysicsLoop( void )
   RenderString( 1, 2, "Left click to spawn a polygon" );
   RenderString( 1, 4, "Right click to spawn a circle" );
 
-  static float accumulator = 0;
-  accumulator += clock.Elapsed( );
-  clock.Start( );
+  static double accumulator = 0;
+  accumulator += pclock.Elapsed( ) / static_cast<double>(std::chrono::duration_cast<clock_freq>(std::chrono::seconds(1)).count());
+  pclock.Start( );
 
   accumulator = Clamp( 0.0f, 0.1f, accumulator );
   while(accumulator >= dt)
@@ -123,15 +123,16 @@ void PhysicsLoop( void )
     accumulator -= dt;
   }
 
-  clock.Stop( );
+  pclock.Stop( );
 
   scene.Render( );
 
   glutSwapBuffers( );
 }
 
-int main( void )
+int main(int argc, char** argv)
 {
+  glutInit(&argc, argv);
   glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
   glutInitWindowSize( 800, 600 );
   glutCreateWindow( "PhyEngine" );
@@ -159,7 +160,6 @@ int main( void )
   b->SetOrient( 0 );
 
   srand( 1 );
-
   glutMainLoop( );
 
   return 0;
