@@ -47,18 +47,18 @@ void Clock::Stop( void )
 long long Clock::Elapsed( void )
 {
   m_current = hr_clock::now();
-  return std::chrono::duration_cast<microseconds>(m_current - m_start).count();
+  return std::chrono::duration_cast<clock_freq>(m_current - m_start).count();
 }
 
 // Time between last Start and Stop calls
 long long Clock::Difference( void )
 {
-  return std::chrono::duration_cast<microseconds>(m_stop - m_start).count();
+  return std::chrono::duration_cast<clock_freq>(m_stop - m_start).count();
 }
 
 // Get the current clock count
 long long Clock::Current( void )
 {
   m_current = hr_clock::now();
-  return std::chrono::duration_cast<microseconds>(m_current.time_since_epoch()).count();
+  return std::chrono::duration_cast<clock_freq>(m_current.time_since_epoch()).count();
 }

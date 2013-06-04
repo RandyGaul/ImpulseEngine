@@ -20,7 +20,7 @@
 #include <chrono>
 
 typedef std::chrono::high_resolution_clock hr_clock;
-typedef std::chrono::microseconds microseconds;
+typedef std::chrono::nanoseconds clock_freq;
 
 class Clock
 {
