@@ -38,6 +38,7 @@
 
 #include <cstring> // strlen, memcpy, etc.
 #include <cstdlib> // exit
+#include <cfloat>
 #include <vector>
 
 #include "glut.h"
