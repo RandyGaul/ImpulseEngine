@@ -35,7 +35,7 @@ struct Manifold
   void Initialize( void );            // Precalculations for impulse solving
   void ApplyImpulse( void );          // Solve impulse and apply
   void PositionalCorrection( void );  // Naive correction of positional penetration
-  void Manifold::InfiniteMassCorrection( void );
+  void InfiniteMassCorrection( void );
 
   Body *A;
   Body *B;
