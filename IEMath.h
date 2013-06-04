@@ -34,8 +34,10 @@ typedef signed int int32;
 typedef unsigned char uint8;
 typedef unsigned short uint16;
 typedef unsigned int uint32;
+#ifdef WIN32 //these types are not standard, only exist in windows
 typedef __int64 int64;
 typedef unsigned __int64 uint64;
+#endif
 typedef float f32;
 typedef double f64;
 
