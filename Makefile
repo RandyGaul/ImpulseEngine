@@ -14,7 +14,7 @@ all: $(TARGET)
 	@echo ImpulseEngine built
 
 $(TARGET): $(OBJECTS)
-	@$(CXX) $(CXXFLAGS) -o ImpulseEngine $(OBJECTS) $(LINKS)
+	@$(CXX) $(CXXFLAGS) -o impulseengine $(OBJECTS) $(LINKS)
 
 clean:
 	rm -rf $(OBJECTS) $(TARGET)
