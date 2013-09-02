@@ -30,8 +30,8 @@ void Manifold::Initialize( void )
   e = std::min( A->restitution, B->restitution );
 
   // Calculate static and dynamic friction
-  sf = std::sqrt( A->staticFriction * A->staticFriction );
-  df = std::sqrt( A->dynamicFriction * A->dynamicFriction );
+  sf = std::sqrt( A->staticFriction * B->staticFriction );
+  df = std::sqrt( A->dynamicFriction * B->dynamicFriction );
 
   for(uint32 i = 0; i < contact_count; ++i)
   {
