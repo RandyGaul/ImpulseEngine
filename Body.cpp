@@ -23,7 +23,29 @@ Body::Body( Shape *shape_, uint32 x, uint32 y )
   : shape( shape_->Clone( ) )
 {
   shape->body = this;
+  Initialize( );
+  shape->Initialize( );
   position.Set( (real)x, (real)y );
+}
+
+Body::Body( PolygonShape *poly_ )
+  : shape( poly_->Clone( ) )
+{
+  shape->body = this;
+  Initialize( );
+
+  //Set Body position such that original PolygonShape vertices are preserved
+  //Assume each vertex has been shifted equivalently during initialization
+  PolygonShape *polyShape = (PolygonShape*) shape;
+  Vec2 firstPoint = polyShape->m_vertices[0];
+  polyShape->Initialize( );
+  Vec2 shift = firstPoint - polyShape->m_vertices[0];
+  position.Set( (real)shift.x, (real)shift.y );
+  SetOrient( 0 );
+}
+
+void Body::Initialize( void )
+{
   velocity.Set( 0, 0 );
   angularVelocity = 0;
   torque = 0;
@@ -32,7 +54,6 @@ Body::Body( Shape *shape_, uint32 x, uint32 y )
   staticFriction = 0.5f;
   dynamicFriction = 0.3f;
   restitution = 0.2f;
-  shape->Initialize( );
   r = Random( 0.2f, 1.0f );
   g = Random( 0.2f, 1.0f );
   b = Random( 0.2f, 1.0f );

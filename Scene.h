@@ -34,6 +34,7 @@ struct Scene
   void Step( void );
   void Render( void );
   Body *Add( Shape *shape, uint32 x, uint32 y );
+  Body *Add( PolygonShape *poly );
   void Clear( void );
 
   f32 m_dt;

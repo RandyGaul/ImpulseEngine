@@ -150,3 +150,11 @@ Body *Scene::Add( Shape *shape, uint32 x, uint32 y )
   bodies.push_back( b );
   return b;
 }
+
+Body *Scene::Add( PolygonShape *poly )
+{
+  assert( poly );
+  Body *b = new Body( poly );
+  bodies.push_back( b );
+  return b;
+}
