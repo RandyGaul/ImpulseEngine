@@ -21,11 +21,16 @@
 #define BODY_H
 
 struct Shape;
+struct PolygonShape;
 
 // http://gamedev.tutsplus.com/tutorials/implementation/how-to-create-a-custom-2d-physics-engine-the-core-engine/
 struct Body
 {
   Body( Shape *shape_, uint32 x, uint32 y );
+
+  Body( PolygonShape *poly_ );
+
+  void Initialize( void );
 
   void ApplyForce( const Vec2& f )
   {
