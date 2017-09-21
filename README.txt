@@ -5,6 +5,6 @@ Impulse Engine is a small 2D physics engine written in C++. The engine is intend
 
 Should build in Windows with Visual Studio 2008-2012. Should build on Linux and OSX platforms with the use of C++11 std::chrono. Thanks to whackashoe for the cross-platform port.
 
-If you have any questions feel free to contact Randy at: r dot gaul at digipen dot edu.
+If you have any questions feel free to contact Randy at: author's last name followed by 1748 at gmail.
 
 http://randygaul.net
