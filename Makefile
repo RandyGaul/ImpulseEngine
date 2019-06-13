@@ -1,3 +1,11 @@
+ifeq ($(OS),Windows_NT)
+    CXXFLAGS += -D WIN32
+endif
+
+ifeq ($(UNAME_S),Darwin)
+    CCFLAGS += -D OSX
+endif
+
 CXXFLAGS=-O3 -std=c++0x -Wall
 
 SOURCES= $(wildcard *.cpp)
@@ -6,7 +14,11 @@ OBJECTS=$(patsubst %.cpp, %.o, $(SOURCES))
 
 TARGET=$(lastword $(subst /, ,$(realpath .)))
 
-LINKS= -lglut -lGL -lGLU
+ifeq ($(UNAME_S),Darwin)
+    LINKS= -framework OpenGL -framework GLUT
+else
+    LINKS= -lglut -lGL -lGLU
+endif
 
 CXX=g++
 
